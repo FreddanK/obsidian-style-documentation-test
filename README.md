@@ -1,4 +1,4 @@
-This repository is a test to investigate if it would be feasible to keep the internal documentation of a medium size software organization in an [[Obsidian]] vault following [[Obsidian best practices]].
+This repository is a test to investigate if it would be feasible to keep the internal documentation of a medium size software organization in an [[Obsidian]] vault following [[Obsidian best practices]]. There are some settings that are highly recommended to use that will help in following the conventions for this repository, see [[Obsidian shared settings]].
 
 ## Folder structure
 
