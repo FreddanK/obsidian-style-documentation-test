@@ -16,8 +16,14 @@ There are also hidden folders and files like:
 - .obsidian
 - .git
 - .gitignore
+- .obsidian.shared/
+	- Shared [[Obsidian shared settings|Obsidian settings]] that all contributors sync into their local `.obsidian/` folder.
+- .github/
+	- [[GitHub Actions]] workflows for automated link checks, settings validation, and MOC suggestions.
+- scripts/
+	- Automation scripts (see below).
 
-A later extension will be files for [[AI Agents]].
+See [[AI Agents]] for the planned intelligent extensions to this vault.
 
 ## Wikilinks
 
@@ -25,7 +31,7 @@ A later extension will be files for [[AI Agents]].
 
 A good rule of thumb is that the first time something is mentioned in a note you create a link to it. Subsequent mentions should not be made into links.
 
-It is okay to leave broken links, that is part of the Obsidian way of working. That way, if someone else links to the same thing and does create the note. All other notes with links to that thing will now be connected.
+It is okay to leave broken links — that is part of the Obsidian way of working. When someone else creates the target note, all existing links to it become connected automatically. Broken links are tracked by the [[Link health check]] workflow, which reports them weekly so they do not accumulate silently.
 
 The usage of [[MOC]] pages, [[Maps Of Content]], will be central to create structure and ways to easily find and discover notes. A MOC is simply a note that contains links to other notes.
 
@@ -41,4 +47,21 @@ Git will ensure that line endings are consistently using Linux style LF endings 
 
 ## Published website
 
-The vault will be published as a website using [[Quartz]], which is a static website generator. The website will be in a separate git repository. This repository shall only contain the documentation and not anything that is related to publishing. This separation makes it easy to easily replace Quartz with another static website generator like [[Docusaurus]], for example.
+The vault will be published as a website using [[Quartz]], which is a static website generator. The website will be in a separate git repository. This repository shall only contain the documentation and not anything that is related to publishing. This separation makes it easy to replace Quartz with another static website generator like [[Docusaurus]], for example.
+
+## Automation
+
+Several scripts in `scripts/` keep the vault healthy:
+
+| Script | Purpose | Run |
+|--------|---------|-----|
+| `apply_shared_settings.py` | Merge `.obsidian.shared/` into your local `.obsidian/` | Locally, after cloning or pulling |
+| `validate_shared_settings.py` | Check shared settings are valid JSON with required plugins | CI on every PR |
+| `check_links.py` | Find broken [[Wikilinks]] | CI on every PR + weekly |
+| `update_mocs.py` | Suggest unlisted notes to [[Maps Of Content\|MOC]] pages | CI on push to main + weekly |
+
+See [[GitHub Actions]] for the full CI workflow documentation.
+
+## Contributor guide
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for step-by-step instructions for readers, occasional editors, and regular contributors.
