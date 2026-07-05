@@ -21,7 +21,7 @@ A later extension will be files for [[AI Agents]].
 
 ## Wikilinks
 
-Wikilinks will be the heart of this system. Take inspiration from Wikipedia where searching and links is the only way to navigate.
+[[Wikilinks]] will be the heart of this system. Take inspiration from Wikipedia where searching and links is the only way to navigate.
 
 A good rule of thumb is that the first time something is mentioned in a note you create a link to it. Subsequent mentions should not be made into links.
 
@@ -36,6 +36,8 @@ The file name of the note will also be used as the heading. So spaces in filenam
 ## Version control
 
 The vault is version controlled with [[Git]].
+
+Git will ensure that line endings are consistently using Linux style LF endings and not Windows style CRLF.
 
 ## Published website
 

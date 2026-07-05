@@ -19,6 +19,3 @@ Install and enabled the Git community plugin.
 Changed settings:
 - Don't use a default commit message for manual commits.
 - Use rebase as the default merge strategy.
-
-
-- 
