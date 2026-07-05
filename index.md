@@ -27,3 +27,9 @@ See [[CONTRIBUTING]] for step-by-step instructions. Short version:
 - [[GitHub Actions]] — automated link checks, MOC suggestions, and settings validation.
 - [[AI Agents]] — planned intelligent extensions to this vault.
 - [[Glossary]] — definitions of key terms.
+
+## Migration from Confluence
+
+- [[Migration guide]] — how to migrate content: workflow, decision rules, and quality bar.
+- [[Migration backlog]] — all topics to migrate, with status and assignments.
+- [[Note template]] — the frontmatter and structure to start every note from.

@@ -34,9 +34,19 @@ def collect_note_names() -> set[str]:
     return names
 
 
+STATUS_RE = re.compile(r"^---\s*\n.*?^status:\s*(\S+).*?^---", re.DOTALL | re.MULTILINE)
+
+
+def get_status(content: str) -> str:
+    """Return the status frontmatter value, or 'stable' if not set."""
+    m = STATUS_RE.search(content)
+    return m.group(1).strip() if m else "stable"
+
+
 def find_broken_links(note_names: set[str]) -> dict[str, list[str]]:
     """
     Returns a dict mapping filename → list of broken link targets found in it.
+    Notes with status 'draft' are scanned but flagged separately.
     """
     broken: dict[str, list[str]] = {}
     for md_file in sorted(NOTES_DIR.glob("*.md")):
@@ -67,17 +77,41 @@ def print_report(broken: dict[str, list[str]]) -> None:
     if not broken:
         print("## ✅ Wikilink Health Check\n\nAll wikilinks are healthy.")
         return
+
+    # Split into draft notes (informational) and stable/review notes (actionable)
+    draft_broken: dict[str, list[str]] = {}
+    other_broken: dict[str, list[str]] = {}
+    for filename, targets in broken.items():
+        content = (NOTES_DIR / filename).read_text(encoding="utf-8")
+        if get_status(content) == "draft":
+            draft_broken[filename] = targets
+        else:
+            other_broken[filename] = targets
+
     total = sum(len(v) for v in broken.values())
     print("## ⚠️ Broken Wikilinks Report\n")
     print(f"Found **{total}** broken wikilink(s) across **{len(broken)}** note(s).\n")
     print("A broken link means no file with that name exists in `Notes/`.")
     print("Fix by creating a stub note or correcting the link.\n")
-    print("| Note | Broken Link |")
-    print("|------|-------------|")
-    for filename, targets in broken.items():
-        for t in targets:
-            print(f"| `{filename}` | `[[{t}]]` |")
-    print()
+
+    if other_broken:
+        print("### Stable / review notes (action required)\n")
+        print("| Note | Broken Link |")
+        print("|------|-------------|")
+        for filename, targets in other_broken.items():
+            for t in targets:
+                print(f"| `{filename}` | `[[{t}]]` |")
+        print()
+
+    if draft_broken:
+        print("### Draft notes (informational — fix before marking stable)\n")
+        print("| Note | Broken Link |")
+        print("|------|-------------|")
+        for filename, targets in draft_broken.items():
+            for t in targets:
+                print(f"| `{filename}` | `[[{t}]]` |")
+        print()
+
     print("> To create a stub for a missing note, add a file `Notes/<name>.md`")
     print("> with a one-line description of what the note should eventually contain.")
 

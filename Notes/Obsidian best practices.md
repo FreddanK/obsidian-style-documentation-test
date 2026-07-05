@@ -25,15 +25,19 @@ Use YAML frontmatter for structured metadata where useful:
 
 ```yaml
 ---
+status: draft
 tags: [architecture, backend]
-last_reviewed: 2026-07
 owner: Backend Team
+migrated_from: "Page title (Confluence space)"
+last_reviewed: 2026-07
 ---
 ```
 
+- `status` — `draft`, `review`, or `stable`. See [[Note template]] for definitions.
 - `tags` — use the controlled tag list from [[Glossary]].
-- `last_reviewed` — required on [[Maps Of Content]] pages. Format: `YYYY-MM` or `YYYY-MM-DD`.
 - `owner` — the team or person responsible for keeping the note accurate.
+- `migrated_from` — the Confluence page title and space this note was based on, for traceability.
+- `last_reviewed` — required on [[Maps Of Content]] pages. Format: `YYYY-MM` or `YYYY-MM-DD`.
 
 ## Tags
 

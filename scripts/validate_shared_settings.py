@@ -68,6 +68,21 @@ def check_plugin_versions():
             errors.append(f"Plugin {plugin_dir.name} manifest.json has no version field")
 
 
+def check_templates_config():
+    """Ensure templates.json exists and points to the Notes folder."""
+    tpl_file = SHARED_DIR / "templates.json"
+    if not tpl_file.exists():
+        errors.append("templates.json missing from .obsidian.shared/ — template folder not configured")
+        return
+    with open(tpl_file, encoding="utf-8") as f:
+        data = json.load(f)
+    folder = data.get("folder", "")
+    if folder == "Notes":
+        print(f"  ✓ Templates folder set to: {folder}")
+    else:
+        errors.append(f"templates.json folder should be 'Notes', got '{folder}'")
+
+
 def main() -> int:
     print("=== Validating .obsidian.shared/ ===\n")
     check_json_files()
@@ -75,6 +90,8 @@ def main() -> int:
     check_required_plugins()
     print()
     check_plugin_versions()
+    print()
+    check_templates_config()
     print()
 
     if errors:

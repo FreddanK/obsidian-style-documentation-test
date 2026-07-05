@@ -20,6 +20,8 @@ The Glossary is an authoritative list of defined terms and concepts used across 
 | RAG | Retrieval-Augmented Generation — an AI pattern that grounds LLM answers in a document corpus | [[AI Agents]] |
 | ADR | Architecture Decision Record — a note documenting a significant technical decision and its rationale | — |
 | Runbook | A step-by-step operational procedure for a specific task or incident | — |
+| status | Frontmatter field indicating a note's maturity: `draft`, `review`, or `stable` | [[Note template]] |
+| migrated_from | Frontmatter field recording the Confluence source page(s) a note was based on | [[Migration guide]] |
 
 ## Adding a term
 

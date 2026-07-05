@@ -39,6 +39,7 @@ All automation scripts live in `scripts/`:
 | `validate_shared_settings.py` | CI check for shared settings validity |
 | `check_links.py` | Find broken wikilinks |
 | `update_mocs.py` | Suggest unlisted notes to MOC pages |
+| `status_report.py` | Report note counts by `status` (posted to CI job summary weekly) |
 
 ## Permissions
 

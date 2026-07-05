@@ -79,6 +79,7 @@ See [Obsidian best practices](Notes/Obsidian%20best%20practices.md) for the full
 | Broken wikilink check | Every PR + weekly | `scripts/check_links.py` |
 | Shared settings validation | Every PR touching `.obsidian.shared/` | `scripts/validate_shared_settings.py` |
 | MOC suggestions | Every push to `main` + weekly | `scripts/update_mocs.py` |
+| Status report | Weekly (posted to CI summary) | `scripts/status_report.py` |
 
 Run any script locally before pushing:
 
@@ -86,4 +87,10 @@ Run any script locally before pushing:
 python3 scripts/check_links.py
 python3 scripts/update_mocs.py --dry-run
 python3 scripts/validate_shared_settings.py
+python3 scripts/status_report.py
 ```
+
+## Migrating content from Confluence
+
+See [Migration guide](Notes/Migration%20guide.md) for the full workflow and decision rules.
+See [Migration backlog](Notes/Migration%20backlog.md) to find and claim a topic to work on.

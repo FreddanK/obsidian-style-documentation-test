@@ -42,6 +42,14 @@ def read_notes() -> dict[str, str]:
     return {f.stem: f.read_text(encoding="utf-8") for f in sorted(NOTES_DIR.glob("*.md"))}
 
 
+STATUS_RE = re.compile(r"^---\s*\n.*?^status:\s*(\S+).*?^---", re.DOTALL | re.MULTILINE)
+
+
+def get_status(content: str) -> str:
+    m = STATUS_RE.search(content)
+    return m.group(1).strip() if m else "stable"
+
+
 def is_moc(stem: str, content: str) -> bool:
     """Heuristic: a note is a MOC if its name contains 'MOC', 'Map', 'Index',
     or if it has a section that mostly contains wikilinks."""
@@ -121,6 +129,9 @@ def main() -> int:
         missing = []
         for stem, content in notes.items():
             if stem == moc_stem:
+                continue
+            # Skip draft notes — they are not ready to be listed in a MOC yet
+            if get_status(content) == "draft":
                 continue
             outbound = {t.lower() for t in links_in(content)}
             if moc_stem.lower() in outbound and stem.lower() not in already_listed:
