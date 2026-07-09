@@ -20,8 +20,6 @@ For small edits, new notes, or fixing a typo without installing anything locally
 4. Write in plain [Markdown](Notes/Markdown.md). Use `[[Note name]]` for internal links.
 5. Commit directly to a new branch and open a pull request.
 
-> The [link health check](.github/workflows/link-health.yml) will run automatically on your PR and comment if any wikilinks you've written don't resolve to existing files.
-
 ---
 
 ## Path 3 — Regular contributor (Obsidian + Git)
@@ -42,7 +40,8 @@ git clone <repo-url>
 cd <repo-name>
 
 # 2. Apply shared settings (merges .obsidian.shared/ into .obsidian/)
-python3 scripts/apply_shared_settings.py
+- For Linux: `./apply_shared_settings.sh`
+- For Windows: Click apply_shared_settings.bat
 
 # 3. Open Obsidian → Open folder as vault → select this folder
 ```
@@ -51,9 +50,8 @@ python3 scripts/apply_shared_settings.py
 
 If `.obsidian.shared/` has changed since your last pull, re-run the sync script:
 
-```bash
-python3 scripts/apply_shared_settings.py
-```
+- For Linux: `./apply_shared_settings.sh`
+- For Windows: Click apply_shared_settings.bat
 
 ### Committing and pushing
 

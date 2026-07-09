@@ -1,11 +1,15 @@
-This repository is a test to investigate if it would be feasible to keep the internal documentation of a medium size software organization in an [[Obsidian]] vault following [[Obsidian best practices]]. There are some settings that are highly recommended to use that will help in following the conventions for this repository, see [[Obsidian shared settings]].
+This repository is a test to investigate if it would be feasible to keep the internal documentation of a medium size software organization in an [[Obsidian]] vault following [[Obsidian best practices]]. 
+
+## Getting Started
+
+See [[CONTRIBUTING]]
 
 ## Folder structure
 
 Flat folder structure, only one level of folders to keep the top level of the repository clean:
-- notes/
+- Notes/
 	- Contains all the [[Markdown]] files and only Markdown files. Does not have any sub folders.
-- assets/
+- Attachments/
 	- Contains all non markdown files, like images, [[Excalidraw]] drawings, pdf files, etc. Does not have any sub folders.
 - index.md
 	- This is the note that will be the start page for the [[Website for this documentation]]
@@ -17,13 +21,11 @@ There are also hidden folders and files like:
 - .git
 - .gitignore
 - .obsidian.shared/
-	- Shared [[Obsidian shared settings|Obsidian settings]] that all contributors sync into their local `.obsidian/` folder.
-- .github/
-	- [[GitHub Actions]] workflows for automated link checks, settings validation, and MOC suggestions.
-- scripts/
+	- [[Obsidian shared settings]] that all contributors sync into their local `.obsidian/` folder.
+- .scripts/
 	- Automation scripts (see below).
 
-See [[AI Agents]] for the planned intelligent extensions to this vault.
+There might also be a dedicated folder containing things related to [[AI Agents]] when we get to that point.
 
 ## Wikilinks
 
@@ -49,19 +51,6 @@ Git will ensure that line endings are consistently using Linux style LF endings 
 
 The vault will be published as a website using [[Quartz]], which is a static website generator. The website will be in a separate git repository. This repository shall only contain the documentation and not anything that is related to publishing. This separation makes it easy to replace Quartz with another static website generator like [[Docusaurus]], for example.
 
-## Automation
-
-Several scripts in `scripts/` keep the vault healthy:
-
-| Script | Purpose | Run |
-|--------|---------|-----|
-| `apply_shared_settings.py` | Merge `.obsidian.shared/` into your local `.obsidian/` | Locally, after cloning or pulling |
-| `validate_shared_settings.py` | Check shared settings are valid JSON with required plugins | CI on every PR |
-| `check_links.py` | Find broken [[Wikilinks]] | CI on every PR + weekly |
-| `update_mocs.py` | Suggest unlisted notes to [[Maps Of Content\|MOC]] pages | CI on push to main + weekly |
-
-See [[GitHub Actions]] for the full CI workflow documentation.
-
 ## Contributor guide
 
-See [CONTRIBUTING.md](CONTRIBUTING.md) for step-by-step instructions for readers, occasional editors, and regular contributors.
+See [[CONTRIBUTING]] for step-by-step instructions for readers, occasional editors, and regular contributors.
