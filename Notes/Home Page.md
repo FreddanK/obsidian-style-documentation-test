@@ -1,4 +1,3 @@
-# Documentation
 
 Welcome to the internal documentation vault. This site is generated from a [[Git]]-versioned [[Obsidian]] vault and published with [[Quartz]].
 
